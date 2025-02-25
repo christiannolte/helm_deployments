@@ -23,7 +23,8 @@ spec:
         - name: {{ .Release.Name }}
           image: structurizr/lite:latest
           imagePullPolicy: Always
-          port: 8080
+          ports:
+            - containerPort: 8080
           volumeMounts:
             - name: {{ .Release.Name }}
               mountPath: /usr/local/structurizr
