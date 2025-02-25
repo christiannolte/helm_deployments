@@ -1,0 +1,39 @@
+--
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-{{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+    name: pv-{{ .Release.Name }}
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/structurizr/"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-{{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+  selector:
+    matchLabels:
+      name: pv-{{ .Release.Name }}
+
+---
