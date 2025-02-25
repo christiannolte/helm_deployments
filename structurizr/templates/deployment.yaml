@@ -20,7 +20,7 @@ spec:
             claimName: {{ .Release.Name }}
       restartPolicy: Always
       containers:
-        - name: {{ .Release.Name }}
+        - name: {{ .Release.Name }}-pod
           image: structurizr/lite:latest
           imagePullPolicy: Always
           ports:
