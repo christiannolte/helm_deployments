@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-dep
   labels:
     app: {{ .Release.Name }}
 spec:
@@ -21,5 +21,5 @@ spec:
           imagePullPolicy: Always
           port: 8080
           volumeMounts:
-            - name: pv-{{ .Release.Name }}
+            - name: pvc-{{ .Release.Name }}
               mountPath: /usr/local/structurizr
